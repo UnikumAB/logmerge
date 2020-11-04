@@ -1,5 +1,16 @@
 # logmerge
-Merges logfiles from webservers into a single one
+Merges logfiles from webservers into a single one. This is very useful for HA servers that serve requests from two 
+different machines for the same site.
+
+At the moment it only supports the VCOMBINED and VCOMMON logfile format, but it should be easy to extend to 
+support more formats.
+
+The source log files need to have the log lines sorted by the timestamps.
+
+The order in which the files are specified does not matter. 
+
+The application reads a line from each input file and writes the oldest one. 
+It then reads the next line from the file it just got the line from and the process repeats.
 
 ## Usage
 ```
