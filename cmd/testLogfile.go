@@ -22,8 +22,8 @@ import (
 	"log"
 	"os"
 
+	"github.com/UnikumAB/logmerge/formats"
 	"github.com/spf13/cobra"
-	"github.com/unikumAB/logmerge/formats"
 )
 
 // testLogfileCmd represents the testLogfile command

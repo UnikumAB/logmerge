@@ -16,8 +16,8 @@ limitations under the License.
 package cmd
 
 import (
+	"github.com/UnikumAB/logmerge/merge"
 	"github.com/spf13/cobra"
-	"github.com/unikumAB/logmerge/merge"
 )
 
 // mergeCmd represents the merge command

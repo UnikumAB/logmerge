@@ -1,4 +1,4 @@
-module github.com/unikumAB/logmerge
+module github.com/UnikumAB/logmerge
 
 go 1.15
 

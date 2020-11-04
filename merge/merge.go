@@ -7,7 +7,7 @@ import (
 	"os"
 	"sync"
 
-	"github.com/unikumAB/logmerge/formats"
+	"github.com/UnikumAB/logmerge/formats"
 )
 
 func Merge(outputFileName string, inputFiles []string) {

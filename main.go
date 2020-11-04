@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/unikumAB/logmerge/cmd"
+import "github.com/UnikumAB/logmerge/cmd"
 
 func main() {
 	cmd.Execute()
