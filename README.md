@@ -15,7 +15,7 @@ It then reads the next line from the file it just got the line from and the proc
 
 You can download the latest release by running:
 
-    $ curl https://raw.githubusercontent.com/UnikumAB/logmerge/master/install.sh | sudo bash 
+    $ curl https://raw.githubusercontent.com/UnikumAB/logmerge/master/install.sh | sudo -E bash 
     
 This will install the binary for your system to /usr/local/bin .
 
