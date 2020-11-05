@@ -11,6 +11,15 @@ The order in which the files are specified does not matter.
 
 The application reads a line from each input file and writes the oldest one. 
 It then reads the next line from the file it just got the line from and the process repeats.
+##Install
+
+You can download the latest release by running:
+
+    $ curl https://raw.githubusercontent.com/UnikumAB/logmerge/master/install.sh | sudo bash 
+    
+This will install the binary for your system to /usr/local/bin .
+
+As always, you should have a look at the install.sh script to see what it is doing before you execute it on your system!
 
 ## Usage
 ```
