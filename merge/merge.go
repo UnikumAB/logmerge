@@ -6,6 +6,7 @@ import (
 	"github.com/UnikumAB/logmerge/compress"
 	"github.com/UnikumAB/logmerge/utils"
 	gzip "github.com/klauspost/pgzip"
+
 	//"compress/gzip"
 	"io"
 	"log"
