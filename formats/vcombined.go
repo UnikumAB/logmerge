@@ -28,7 +28,7 @@ func (v vCombinedLine) ParseLine(line string) (Line, error) {
 }
 
 func NewVCombinedParser() (LineReader, error) {
-	const vCombinedRegexp = "^[\\w.]+:\\d+ \\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3} - .+ \\[(.+)\\] \".*\" \\d{3} \\d+ \".*\"( \".*\")?( \".*\")?"
+	const vCombinedRegexp = "^[\\w-.]+:\\d+ \\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3} - .+ \\[(.+)\\] \".*\" \\d{3} \\d+ \".*\"( \".*\")?( \".*\")?"
 	compile := regexp.MustCompile(vCombinedRegexp)
 	return vCombinedLine{re: compile}, nil
 }

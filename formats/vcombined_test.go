@@ -27,6 +27,12 @@ func Test_vCommonLine_ParseLine(t *testing.T) {
 			want:    time.Unix(1604115769, 0),
 			wantErr: false,
 		},
+		{
+			name:    "November Line",
+			args:    args{line: "test-api.example.com:443 10.23.252.93 - demoxqpM7Ngo6IdRd2YH [02/Nov/2020:07:44:57 +0100] \"POST /v1/persons HTTP/1.1\" 201 289 \"-\" \"Apache-HttpClient/4.5.3 (Java/1.8.0_181)\"\n"},
+			want:    time.Unix(1604299497, 0),
+			wantErr: false,
+		},
 	}
 	V, err := NewVCombinedParser()
 	if err != nil {
