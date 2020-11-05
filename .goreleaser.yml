@@ -27,20 +27,6 @@ archives:
       windows: Windows
       386: i386
       amd64: x86_64
-dockers:
-  - goos: linux
-    image_templates:
-      - "unikum/logmerge:latest"
-      - "unikum/logmerge:release-{{ .Tag }}"
-    skip_push: false
-    dockerfile: Dockerfile
-    extra_files:
-      - Makefile
-      - go.mod
-      - go.sum
-      - .golangci.yml
-      - cmd/
-      - pkg/
 checksum:
   name_template: 'checksums.txt'
 snapshot:
