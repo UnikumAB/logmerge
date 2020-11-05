@@ -1,6 +1,6 @@
 # logmerge
 Merges logfiles from webservers into a single one. This is very useful for HA servers that serve requests from two 
-different machines for the same site.
+different machines for the same site. The files can be either plain text or gzip compressed.
 
 At the moment it only supports the VCOMBINED and VCOMMON logfile format, but it should be easy to extend to 
 support more formats.

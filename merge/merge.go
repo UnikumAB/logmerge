@@ -2,12 +2,15 @@ package merge
 
 import (
 	"bufio"
+	"compress/gzip"
 	"io"
 	"log"
+	"net/http"
 	"os"
 	"sync"
 
 	"github.com/UnikumAB/logmerge/formats"
+	"github.com/pkg/errors"
 )
 
 func Merge(outputFileName string, inputFiles []string) {
@@ -73,19 +76,33 @@ func fillLines(inChans []<-chan formats.Line, lines []*formats.Line) ([]*formats
 	return lines, inChans
 }
 
-func readfile(arg string, parser formats.LineReader, wg *sync.WaitGroup) <-chan formats.Line {
+func readfile(filename string, parser formats.LineReader, wg *sync.WaitGroup) <-chan formats.Line {
 	inChan := make(chan formats.Line)
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
 		defer close(inChan)
-		inputFile, err := os.Open(arg)
+		isGzip, err := detectGzip(filename)
 		if err != nil {
-			log.Printf("Failed to open input file %v: %v", arg, err)
+			log.Printf("Failed to detect content type: %v", err)
+			return
+		}
+		inputFile, err := os.Open(filename)
+		if err != nil {
+			log.Printf("Failed to open input file %v: %v", filename, err)
 			return
 		}
 		defer checkedClose(inputFile)
-		scanner := bufio.NewScanner(inputFile)
+		var inputReader io.Reader = inputFile
+		if isGzip {
+			reader, err := gzip.NewReader(inputFile)
+			if err != nil {
+				log.Printf("Failed to create gzip reader for %v: %v", filename, err)
+			}
+			log.Printf("%v is a GZiped file", filename)
+			inputReader = reader
+		}
+		scanner := bufio.NewScanner(inputReader)
 		for scanner.Scan() {
 			text := scanner.Text()
 			line, err := parser.ParseLine(text)
@@ -96,6 +113,26 @@ func readfile(arg string, parser formats.LineReader, wg *sync.WaitGroup) <-chan 
 		}
 	}()
 	return inChan
+}
+
+func detectGzip(filename string) (bool, error) {
+	file, err := os.Open(filename)
+	if err != nil {
+		return false, errors.WithMessagef(err, "Cannot open file %s", filename)
+	}
+	defer checkedClose(file)
+	buff := make([]byte, 512)
+	_, err = file.Read(buff)
+	if err != nil {
+		return false, errors.WithMessagef(err, "Failed reading from %s", filename)
+	}
+	contentType := http.DetectContentType(buff)
+	switch contentType {
+	case "application/x-gzip", "application/zip":
+		return true, nil
+	default:
+		return false, nil
+	}
 }
 
 func checkedClose(closer io.Closer) {
