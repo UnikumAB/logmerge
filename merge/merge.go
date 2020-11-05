@@ -133,7 +133,7 @@ func readfile(filename string, parser formats.LineReader, wg *sync.WaitGroup, ba
 			bar.IncrBy(len([]byte(text)))
 			line, err := parser.ParseLine(text)
 			if err != nil {
-				log.Printf("Failed to parse line: %v", err)
+				log.Printf("Failed to parse line %q: %v", text, err)
 			}
 			inChan <- line
 		}
