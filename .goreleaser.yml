@@ -16,6 +16,8 @@ builds:
     # Path to main.go file or main package.
     # Default is `.`.
     main: .
+    ldflags:
+      - "-s -w -X github.com/UnikumAB/logmerge/cmd.version={{.Version}} -X github.com/UnikumAB/logmerge/cmd.commit={{.Commit}} -X github.com/UnikumAB/logmerge/cmd.date={{.Date}}"
     goos:
       - linux
       - windows

@@ -26,12 +26,12 @@ var mergeCmd = &cobra.Command{
 	Short: "Merges the log files",
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		merge.Merge(output, args)
+		merge.Merge(outputFile, args)
 	},
 }
 var (
-	output string
-	files  []string
+	outputFile string
+	files      []string
 )
 
 func init() {
@@ -42,7 +42,7 @@ func init() {
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
 	mergeCmd.Flags().StringArrayVarP(&files, "file", "f", []string{"access.log"}, "Access files to merge")
-	mergeCmd.Flags().StringVarP(&output, "output", "o", "access-out.log", "Access files to write to")
+	mergeCmd.Flags().StringVarP(&outputFile, "output", "o", "access-out.log", "Access files to write to")
 	// mergeCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command

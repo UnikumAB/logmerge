@@ -10,4 +10,5 @@ require (
 	github.com/spf13/cobra v1.1.1
 	github.com/spf13/viper v1.7.1
 	github.com/vbauerster/mpb/v5 v5.3.0
+	go.hein.dev/go-version v0.1.0
 )
