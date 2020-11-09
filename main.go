@@ -17,6 +17,13 @@ package main
 
 import "github.com/UnikumAB/logmerge/cmd"
 
+var (
+	version string
+	commit  string
+	date    string
+	buildBy string
+)
+
 func main() {
-	cmd.Execute()
+	cmd.Execute(version, commit, date, buildBy)
 }
