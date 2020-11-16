@@ -10,8 +10,8 @@ func TestDetectGzip(t *testing.T) {
 	tests := []struct {
 		name       string
 		args       args
-		wantisGz   bool
 		wantedSize int64
+		wantisGz   bool
 		wantErr    bool
 	}{
 		{

@@ -4,6 +4,7 @@ linters:
     - gofmt
     - scopelint
     - wsl
+    - maligned
 
   issues:
     new: true
