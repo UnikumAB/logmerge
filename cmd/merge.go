@@ -37,15 +37,6 @@ var (
 func init() {
 	rootCmd.AddCommand(mergeCmd)
 
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
 	mergeCmd.Flags().StringArrayVarP(&files, "file", "f", []string{"access.log"}, "Access files to merge")
 	mergeCmd.Flags().StringVarP(&outputFile, "output", "o", "access-out.log", "Access files to write to")
-	// mergeCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// mergeCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

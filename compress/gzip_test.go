@@ -6,6 +6,7 @@ func TestDetectGzip(t *testing.T) {
 	type args struct {
 		filename string
 	}
+
 	tests := []struct {
 		name       string
 		args       args
@@ -35,16 +36,21 @@ func TestDetectGzip(t *testing.T) {
 			wantErr:    false,
 		},
 	}
+
 	for _, tt := range tests {
+		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			isGzip, fileSize, err := DetectGzip(tt.args.filename)
+
 			if (err != nil) != tt.wantErr {
 				t.Errorf("DetectGzip() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
+
 			if isGzip != tt.wantisGz {
 				t.Errorf("DetectGzip() isGzip = %v, wantisGz %v", isGzip, tt.wantisGz)
 			}
+
 			if fileSize != tt.wantedSize {
 				t.Errorf("DetectGzip() fileSize = %v, wantisGz %v", fileSize, tt.wantedSize)
 			}

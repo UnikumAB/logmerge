@@ -27,7 +27,6 @@ var (
 	version   = "dev"
 	commit    = "none"
 	date      = "unknown"
-	buildBy   = "unknown"
 	output    = "json"
 )
 

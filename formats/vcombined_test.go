@@ -9,6 +9,7 @@ func Test_vCommonLine_ParseLine(t *testing.T) {
 	type args struct {
 		line string
 	}
+
 	tests := []struct {
 		name    string
 		args    args
@@ -35,23 +36,30 @@ func Test_vCommonLine_ParseLine(t *testing.T) {
 		},
 	}
 	V, err := NewVCombinedParser()
+
 	if err != nil {
 		t.Fatalf("Cannot instanciate VCommonParser")
 	}
+
 	for _, tt := range tests {
+		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := V.ParseLine(tt.args.line)
+
 			if (err != nil) != tt.wantErr {
 				t.Errorf("ParseLine() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
+
 			if err != nil {
 				t.Errorf("ParseLine() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
+
 			if got.Source != tt.args.line {
 				t.Errorf("ParseLine() Source got = %v, want %v", got.Source, tt.args.line)
 			}
+
 			if !got.Timestamp.Equal(tt.want) {
 				t.Errorf("ParseLine() got = %v, want %v", got.Timestamp, tt.want)
 			}

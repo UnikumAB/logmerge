@@ -21,9 +21,8 @@ var (
 	version string
 	commit  string
 	date    string
-	buildBy string
 )
 
 func main() {
-	cmd.Execute(version, commit, date, buildBy)
+	cmd.Execute(version, commit, date)
 }
